@@ -51,6 +51,11 @@
 			<version>1.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.spring.orm</groupId>
+			<artifactId>springorm</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>springcrud</finalName>

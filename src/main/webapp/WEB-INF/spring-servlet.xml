@@ -19,8 +19,12 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		"> <!-- bean definitions here -->
-	<tx:annotation-driven/>
+	
 	<context:component-scan base-package="springcrud" />
+	
+	<mvc:annotation-driven />
+	<mvc:resources location="WEB-INF/resources/" mapping="/resources/**" />
+	
 	<!-- configuring InternalResourceViewResolver-> Child of ViewResolver(I) -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -46,9 +50,9 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-		<property name="mappingResources">
+		<property name="annotatedClasses">
 			<list>
-				
+				<value>springcrud.model.ProductModel</value>
 			</list>
 		</property>
 	</bean>
@@ -57,9 +61,12 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	
+	
 	<!--  to manage transaction in db -->
 	<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
